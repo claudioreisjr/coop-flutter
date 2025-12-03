@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.starsites.flutter_coop">
     <application
         android:label="flutter_coop"
         android:name="${applicationName}"
