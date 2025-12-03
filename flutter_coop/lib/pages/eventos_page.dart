@@ -11,8 +11,13 @@ class EventosPage extends StatefulWidget {
 class _EventosPageState extends State<EventosPage> {
   final TextEditingController nomeCtrl = TextEditingController();
   final TextEditingController telCtrl = TextEditingController();
+  final _formKey = GlobalKey<FormState>(); //pra validar campos formulario
 
   Future<void> confirmarPresenca() async {
+    // Valida os campos
+    if (!_formKey.currentState!.validate()) {
+      return;  // Para aqui se tiver erro
+    }
     await FirebaseFirestore.instance.collection("eventos_confirmados").add({
       "nome": nomeCtrl.text,
       "telefone": telCtrl.text,
@@ -106,38 +111,56 @@ class _EventosPageState extends State<EventosPage> {
             const SizedBox(height: 10),
 
             // FORMULÁRIO
-            TextField(
-              controller: nomeCtrl,
-              decoration: const InputDecoration(
-                labelText: "Nome",
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: nomeCtrl,
+                    decoration: const InputDecoration(
+                      labelText: "Nome",
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Preencha o nome";
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 12),
 
-            TextField(
-              controller: telCtrl,
-              decoration: const InputDecoration(
-                labelText: "Telefone",
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.phone,
-            ),
+                  TextFormField(
+                    controller: telCtrl,
+                    decoration: const InputDecoration(
+                      labelText: "Telefone",
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Preencha o telefone";
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
 
-            const SizedBox(height: 20),
-
-            ElevatedButton.icon(
-              onPressed: confirmarPresenca,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              ),
-              icon: const Icon(Icons.check),
-              label: const Text("Confirmar"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+                  ElevatedButton.icon(
+                    onPressed: confirmarPresenca,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                    ),
+                    icon: const Icon(Icons.check),
+                    label: const Text("Confirmar"),
+                  ),
+               ],  // ← fecha children do Column do Form
+              ),    // ← fecha Column do Form
+            ),      // ← fecha Form
+          ],        // ← fecha children do Column principal
+        ),          // ← fecha Column principal
+      ),            // ← fecha SingleChildScrollView
+    );              // ← fecha Scaffold
+  }                 // ← fecha build
+}                   // 
