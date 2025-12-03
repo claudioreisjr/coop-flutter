@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.coop.flutter_coop">
+
+     <!-- ADICIONE ESTAS LINHAS AQUI ⬇️ -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="flutter_coop"
         android:name="${applicationName}"
