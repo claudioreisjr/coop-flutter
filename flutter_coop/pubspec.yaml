@@ -36,6 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   http: ^1.6.0
   flutter_dotenv: ^6.0.0
+  geolocator: ^12.0.0         # geolocalização
+  fl_chart: ^0.69.0           # gráficos
+  weather_icons: ^3.0.0       # ícones de clima
+  geocoding: ^2.1.0
+  firebase_core: ^3.0.0
+  cloud_firestore: ^5.0.0
+  firebase_storage: ^12.0.0
+  image_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -60,7 +68,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+  #  - .env  
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
