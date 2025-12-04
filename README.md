@@ -4,8 +4,10 @@ Aplicativo desenvolvido para confirmar presença em um evento de Coffee Break e 
 
 ### 📱 Sobre o Projeto
 
-![Tela Clima](caminho/da/imagem.png)<br>
-![Tela Eventos](caminho/da/imagem.png)
+<p align="center">
+  <img src="https://github.com/claudioreisjr/coop-flutter/blob/main/print/page_clima.jpeg" width="230" alt="Tela Clima" />
+  <img src="https://github.com/claudioreisjr/coop-flutter/blob/main/print/page_evento.jpeg" width="230" alt="Tela Eventos" />
+</p>
 
 Este aplicativo foi desenvolvido utilizando Flutter, com foco em duas funcionalidades principais:
 
